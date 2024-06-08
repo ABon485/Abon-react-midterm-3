@@ -1,24 +1,28 @@
-// App.js
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { useEffect } from "react";
 import "./App.css";
 import Home from "./components/layout/Home";
 import Navbar from "./components/layout/Navbar";
-import { useStore } from "./components/store";
+
 const App = () => {
-  const [state] = useStore();
+  const [mode, setMode] = useState("light");
 
   useEffect(() => {
-    document.body.className = state.mode === "light" ? "bg-light" : "bg-dark";
-  }, [state.mode]);
+    document.body.className = mode === "light" ? "light-mode" : "dark-mode";
+  }, [mode]);
+
+  const toggleMode = () => {
+    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+  };
+
   return (
     <div className="App">
       <Router>
-        <Navbar />
+        <Navbar mode={mode} toggleMode={toggleMode} />
         <Home />
       </Router>
     </div>
   );
 };
+
 export default App;

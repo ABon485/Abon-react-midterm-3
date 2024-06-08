@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import Users from "./Users";
 import { searchUsers } from "../../apis/api";
-import { useStore, actions } from "../store";
 
 const Search = () => {
-    const [state, dispatch] = useStore();
-    const [text, setText] = useState(state.text);
-    const [users, setUsers] = useState(state.users);
+    const [text, setText] = useState("");
+    const [users, setUsers] = useState([]);
+
     const clearUsers = () => {
-        dispatch(actions.setKey(""));
-        dispatch(actions.setUsers([]));
         setText("");
         setUsers([]);
     };
@@ -21,9 +18,7 @@ const Search = () => {
         } else {
             searchUsers(text).then((data) => {
                 setUsers(data.items);
-                dispatch(actions.setUsers(data.items));
             });
-            dispatch(actions.setKey(text));
         }
     };
 
@@ -39,7 +34,6 @@ const Search = () => {
                     value={text}
                     onChange={onChange}
                 />
-
                 <input
                     type="submit"
                     value="Search"

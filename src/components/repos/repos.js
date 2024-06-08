@@ -1,14 +1,15 @@
 import React from 'react';
-import RePoItem from './RepoItem';
+import RepoItem from './RepoItem';
 
 const Repos = ({ repos }) => {
-    return (
-        <div className="card-group">
-            {repos.map((repo) => (
-                <RePoItem key={repo.id} name={repo.name} description={repo.description} deployments_url={repo.deployments_url} />
-            ))}
-        </div>
-    );
-}
+  return (
+    <div className='repos'>
+      <h2>User Repositories</h2>
+      {repos.map((repo) => (
+        <RepoItem key={repo.id} repo={repo} />
+      ))}
+    </div>
+  );
+};
 
 export default Repos;

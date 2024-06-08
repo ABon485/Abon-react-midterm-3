@@ -1,15 +1,35 @@
-function RepoItem(props) {
-    const repo = props.props;
-    return (
-      <div className="repo-items">
-        <div className="repo-item">
-          <div className="repo-item-name">
-            <a href={repo.html_url} target="_blank">
-              {repo.full_name}
-            </a>
-          </div>
-        </div>
+import React from 'react';
+import { FaCodeBranch, FaEye } from 'react-icons/fa';
+
+const RepoItem = ({ repo }) => {
+  const {
+    name,
+    description,
+    html_url,
+    forks_count,
+    watchers_count
+  } = repo;
+
+  return (
+    <div className='card'>
+      <h3>
+        <a href={html_url} target='_blank' rel='noreferrer'>
+          {name}
+        </a>
+      </h3>
+      <p>{description}</p>
+      <div>
+        <ul>
+          <li>
+            <FaCodeBranch /> {forks_count}
+          </li>
+          <li>
+            <FaEye /> {watchers_count}
+          </li>
+        </ul>
       </div>
-    );
-  }
-  export default RepoItem;
+    </div>
+  );
+};
+
+export default RepoItem;
