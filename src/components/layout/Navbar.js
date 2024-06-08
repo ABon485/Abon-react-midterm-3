@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaGithub } from 'react-icons/fa';
 
 const Navbar = ({ mode, toggleMode }) => {
+    
   return (
-    <nav className={`navbar ${mode === "light" ? "bg-light" : "bg-dark"}`}>
+    <nav className={`navbar bg-success ${mode === "light" ? "bg-light" : "bg-dark"}`}>
       <h1>
-        <i className="fab fa-github" /> GitHub Finder
+        <FaGithub /> GitHub Finder
       </h1>
       <ul>
         <li>

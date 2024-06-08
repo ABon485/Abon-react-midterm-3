@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Users from "./Users";
 import { searchUsers } from "../../apis/api";
+import SearchContext from "./SearchContext";
 
 const Search = () => {
-    const [text, setText] = useState("");
-    const [users, setUsers] = useState([]);
+    const { text, setText, users, setUsers } = useContext(SearchContext);
 
     const clearUsers = () => {
         setText("");
